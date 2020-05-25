@@ -1,5 +1,5 @@
 # mall
-学习代码
+学习代码惹
 ## Project setup
 ```
 npm install
