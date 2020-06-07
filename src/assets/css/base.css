@@ -1,0 +1,93 @@
+/* 导入normalize重置样式 再到appvue里面导入base.css使整个样式生效 */
+@import "./normalize.css";
+
+/* :root  根元素  永远是html元素 */
+/* 在html标签中定义变量方便后面进行调用 
+   css中的变量作用域为当前标签及子标签
+   此处定义html中相当于全局变量
+*/
+:root {
+  /* css中定义变量
+    --变量名:value 
+    通过var(--变量名)进行调用
+  */
+  --color-text: #666;
+  --color-high-text: #ff5777;
+  --color-tint: #ff8198;
+  --color-background: #fff;
+  --font-size: 14px;
+  --line-height: 1.5;
+}
+
+*,
+/* 
+  1.::before和::after
+    ::before是在该标签的填充内容前方添加一个伪元素
+    ::after是在该标签的填充内容后方添加一个伪元素
+    两者都必须搭配content使用否则不生效
+    主要用途：1在hover或其他css监听的事件时在指定元素周围出现特定内容 搭配动画效果会更好
+            2使用添加伪元素的方式清除标签的浮动 
+              使用clear:both content:'' display:block width:0 height:0  visibility:hidden
+
+  box-sizing设置标签的宽高 普通的宽高计算为: 实际width= 标签width +border +padding  (左右都有要*2)
+                box-sizing:boder-box计算为 实际width= 标签width 在标签width中包含了border和padding
+      例如div宽为100px border 10px  padding 10px
+          普通设置的宽 = 100+10*2+10*2 = 140px  标签的width=100 整体width=140
+          box-sizing:border-box的width = 100px   标签width= 60 整体width=100
+  总结此属性设置适合在需要进行响应式设置宽高时使用  标签不会超出父标签的范围
+*/
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  user-select: none; /* 禁止用户鼠标在页面上选中文字/图片等 */
+  -webkit-tap-highlight-color: transparent; /* webkit是苹果浏览器引擎，tap点击，highlight背景高亮，color颜色，颜色用数值调节 */
+  background: var(--color-background);
+  color: var(--color-text);
+  width: 100vw;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+/* 使用伪元素清除浮动 */
+.clear-fix::after {
+  clear: both;
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+/* zoom 可以用来进行缩放 后面跟上数字表示缩放百分比 缩放在ie中才起作用  一般用来清除浮动 */
+.clear-fix {
+  zoom: 1;
+}
+
+.arrow-right {
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  width: 9px;
+  height: 9px;
+  background-color: transparent;
+  /* 顺时针旋转135度 */
+  transform: rotate(135deg);
+  display: inline-block;
+  margin-left: .1rem;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
