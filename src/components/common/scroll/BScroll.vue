@@ -90,7 +90,7 @@ export default {
   methods: {
     // 自己封装scrollTo方法  方便调用  time=500是给time这个变量一个默认值
     scrollTo(x ,y , time=500){
-      this.scroll.scrollTo( x , y ,500);
+      this.scroll.scrollTo( x , y ,time);
     }
   }
 }

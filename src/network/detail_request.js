@@ -8,3 +8,9 @@ export function getDetail(iid){
     }
   })
 }
+
+export function getDetailRecommend(){
+  return request({
+    url:'recommend'
+  })
+}

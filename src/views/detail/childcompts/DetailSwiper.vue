@@ -1,6 +1,6 @@
 <template>
   <div >
-    <swiper class="detail-swiper">
+    <swiper class="detail-swiper" :use-indicator="false">
       <template v-slot:default>
         <swiper-item v-for="(item,index) in topImages"  :key="index">
           <template v-slot:default>

@@ -40,7 +40,6 @@ import Scroll from 'components/common/scroll/BScroll'
 
 import TapControl from 'components/content/tapcontrol/TapControl'
 import GoodsList from 'components/content/goodslist/GoodsList'
-import GoTop from 'components/content/gotop/GoTop'
 
 import HomeNavBar from './childcompts/HomeNavBar'
 import HomeSwiper from './childcompts/HomeSwiper'
@@ -54,16 +53,17 @@ import {
 import {
   debounce
 } from 'common/utils'
-
+import {backToTopTemplate} from 'common/mixin'
 export default {
 
   name : "home",
+
+  mixins:[backToTopTemplate],
 
   components: {
     Scroll,
     TapControl,
     GoodsList,
-    GoTop,
     HomeNavBar,
     HomeSwiper,
     HomeRecommendView,
@@ -81,21 +81,23 @@ export default {
       },
       currentType:'pop',
       probeType:3,
-      showBackToTop:false,
       tapControlOffset:0,
-      showTrueTap:true
+      showTrueTap:true,
+      saveY:0
     };
   },
 
   created(){
+    
   },
   mounted(){
+    
     this.getHomeMultiData();
     this.getHomeGoodsData('pop');
     this.getHomeGoodsData('new');
     this.getHomeGoodsData('sell');
 
-    this.$bus.$on('goodsImgLoad' , debounce(this.scrollRefresh , 500));
+    this.$bus.$on('goodsImgLoad' , this.newRefresh());
     this.$bus.$on('swiperImageLoad' , debounce(this.getTapControlOffset),300);
 
     // 普通元素可以直接拿到元素对象this.$refs.el 
@@ -112,6 +114,11 @@ export default {
   },
 
   methods: {
+    // 监听事件总线 返回防抖函数
+    newRefresh(){
+      return debounce(this.scrollRefresh , 500);
+    },
+
     tapcontrolClick(index){
       switch (index) {
         case 0:
@@ -134,13 +141,11 @@ export default {
     },
     // 监听当前dom的更新 更新完成后刷新scroll
     scrollRefresh(){
+      
       this.$refs.scroll.scroll.refresh();
     },
     scrollFinishPullUp(){
       this.$refs.scroll.scroll.finishPullUp()
-    },
-    goTopClick(){
-      this.$refs.scroll.scrollTo( 0 , 0 );
     },
 
     contentScroll(position){
@@ -179,6 +184,17 @@ export default {
         }
       )
     }
+  },
+  activated(){
+    if(!this.$refs.scroll.scroll) return;
+    
+    this.$bus.$on('imgLoad',this.newRefresh());
+    this.scrollRefresh();
+    this.$refs.scroll.scrollTo( 0 , this.saveY , 0);
+  },
+  deactivated(){
+    this.saveY = this.$refs.scroll.scroll.y;
+    
   }
 }
 

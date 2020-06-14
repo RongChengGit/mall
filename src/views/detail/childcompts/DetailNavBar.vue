@@ -46,6 +46,7 @@ export default {
     },
     titleItemClick(index){
       this.currentIndex = index;
+      this.$emit('titleClick',index);
     }
   }
 }

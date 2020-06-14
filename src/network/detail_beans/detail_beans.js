@@ -1,11 +1,14 @@
 export class GoodsBaseInfo{
   constructor(columns , itemInfo , shopInfo){
     this.columns = columns;
+    this.iid = itemInfo.iid;
     this.discountBgColor = itemInfo.discountBgColor;
     this.discountDesc = itemInfo.discountDesc;
     this.oldPrice = itemInfo.oldPrice;
     this.price = itemInfo.price;
+    this.realPrice = itemInfo.lowNowPrice;
     this.title = itemInfo.title;
+    this.desc =  itemInfo.desc;
     this.services = shopInfo.services;
   }
 }

@@ -9,7 +9,7 @@
     <div class="info-img">
       <img
         v-for="(item,index) in goodsDetailImages.detailImage[0].list" :key="index"
-        :src="'http:'+item" alt=""
+        :src="item" alt=""
         @load="loadEvent">
     </div>
   </div>

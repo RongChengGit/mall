@@ -1,5 +1,6 @@
 // 额外的vue配置可以在这里进行添加
 module.exports = {
+  productionSourceMap:false,
   configureWebpack:{
     resolve:{
       alias:{
@@ -7,7 +8,8 @@ module.exports = {
         'common':'@/common',
         'components':'@/components',
         'network':'@/network',
-        'views':'@/views'
+        'views':'@/views',
+        'store':'@/store'
       }
     }
   }

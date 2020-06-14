@@ -1,5 +1,5 @@
 <template>
-  <div id="tabbar">
+  <div class="tabbar">
       <slot name="part1"></slot>
       <slot name="part2"></slot>
       <slot name="part3"></slot>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style>
-  #tabbar{
+  .tabbar{
     /* 水平分布   flex写在子标签中  占据的大小平均*/
     display: flex;
 
