@@ -1,8 +1,15 @@
 <template>
-  <div>我的</div>
+  <div class="profile">
+    <profile-user-info></profile-user-info>
+    <profile-page-list></profile-page-list>
+  </div>
 </template>
 
 <script>
+
+import ProfileUserInfo from './childcompts/ProfileUserInfo'
+import ProfilePageList from './childcompts/ProfilePageList'
+
 export default {
 
   name : "profile",
@@ -12,7 +19,10 @@ export default {
     };
   },
 
-  components: {},
+  components: {
+    ProfileUserInfo,
+    ProfilePageList
+  },
 
   computed: {},
 
@@ -21,4 +31,10 @@ export default {
 
 </script>
 <style scoped>
+.profile{
+  width: 100vw;
+  height: 100vh;
+  background-color: #FAFAFA;
+  padding-top: 15px;
+}
 </style>

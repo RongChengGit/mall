@@ -1,6 +1,10 @@
 <template>
   <div class="goods-list">
-    <goods-list-item v-for="(item,index) in goodsList" :item="item" :key="index">
+    <goods-list-item 
+      v-for="(item,index) in goodsList" 
+      :item="item" :key="index" 
+      :show-price="showPrice"
+      :use-link="useLink">
     </goods-list-item>
   </div>
 </template>
@@ -17,6 +21,18 @@ export default {
       type:Array,
       default(){
         return [];
+      }
+    },
+    showPrice:{
+      type:Boolean,
+      default(){
+        return true;
+      }
+    },
+    useLink:{
+      type:Boolean,
+      default(){
+        return false
       }
     }
   },

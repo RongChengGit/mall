@@ -96,7 +96,6 @@ export default {
     this.getHomeGoodsData('pop');
     this.getHomeGoodsData('new');
     this.getHomeGoodsData('sell');
-
     this.$bus.$on('goodsImgLoad' , this.newRefresh());
     this.$bus.$on('swiperImageLoad' , debounce(this.getTapControlOffset),300);
 
@@ -141,7 +140,6 @@ export default {
     },
     // 监听当前dom的更新 更新完成后刷新scroll
     scrollRefresh(){
-      
       this.$refs.scroll.scroll.refresh();
     },
     scrollFinishPullUp(){
@@ -187,13 +185,13 @@ export default {
   },
   activated(){
     if(!this.$refs.scroll.scroll) return;
-    
-    this.$bus.$on('imgLoad',this.newRefresh());
+    this.$bus.$on('goodsImgLoad',this.newRefresh());
     this.scrollRefresh();
     this.$refs.scroll.scrollTo( 0 , this.saveY , 0);
   },
   deactivated(){
     this.saveY = this.$refs.scroll.scroll.y;
+    this.$bus.$off('goodsImgLoad');
     
   }
 }
@@ -219,7 +217,7 @@ export default {
 /* 使用betterscroll一定要给上定位否则会出现不滚动的现象 */
 #scroll{
   width: 100%;
-  height: calc( 100% - 44px);
+  height: calc( 100% - 44px - 49px);
   /* height: 500px; */
    overflow: hidden;
   /*position: absolute;

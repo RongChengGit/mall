@@ -3,8 +3,8 @@
     <img v-lazy="imageUrl" alt="" class="goods-img" @load="goodsImgLoad">
     <div class="goods-text-content">
       <p>{{item.title}}</p>
-      <span class="price">{{"¥"+item.price}}</span>
-      <span class="cfav">{{item.cfav}}</span>
+      <span v-if="showPrice" class="price">{{"¥"+item.price}}</span>
+      <span v-if="showPrice" class="cfav">{{item.cfav}}</span>
     </div>
   </div>
 </template>
@@ -20,7 +20,20 @@ export default {
       default(){
         return {};
       }
+    },
+    showPrice:{
+      type:Boolean,
+      default(){
+        return true;
+      }
+    },
+    useLink:{
+      type:Boolean,
+      default(){
+        return false;
+      }
     }
+
   },
 
   data () {
@@ -43,13 +56,16 @@ export default {
 
     goodsItemClick(){
       // this.$router.push('detail/'+this.item.iid);
-      
-        this.$router.push({
-          path:'/detail',
-          query:{
-            id:this.item.iid||this.item.shop_id
-          }
-        })
+      if(this.useLink){
+        location.href = this.item.link;
+        return;
+      }
+      this.$router.push({
+        path:'/detail',
+        query:{
+          id:this.item.iid||this.item.shop_id
+        }
+      })
     }
   }
 }
