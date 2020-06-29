@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default function(config){
   const axiosInstance = axios.create({
-    baseURL:'http://152.136.185.210:8000/api/n3',
+    baseURL:'',
 
   });
   // 请求拦截
