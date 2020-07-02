@@ -193,7 +193,7 @@ export default {
     this.saveY = this.$refs.scroll.scroll.y;
     this.$bus.$off('goodsImgLoad');
     
-  }
+  } 
 }
 
 </script>

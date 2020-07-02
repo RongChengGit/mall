@@ -36,5 +36,5 @@ export default {
   height: 100vh;
   background-color: #FAFAFA;
   padding-top: 15px;
-}
+} 
 </style>

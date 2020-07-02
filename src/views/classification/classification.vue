@@ -74,7 +74,7 @@ export default {
           this.goodsList = res.data.list;
         }
       )
-    }
+    } 
   }
 }
 

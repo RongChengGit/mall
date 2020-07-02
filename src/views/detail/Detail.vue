@@ -7,7 +7,7 @@
       ref="scroll"
       :probe-type="probeType"
       @scroll="contentScroll"
-      >
+      > 
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods-base-info="goodsBaseInfo"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>

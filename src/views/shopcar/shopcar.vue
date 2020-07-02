@@ -11,7 +11,7 @@
 </template>
 
 <script>
-
+ 
 import NavBar from 'components/common/navbar/Navbar'
 
 import ShopcarContent from './childcompts/ShopcarContent'
